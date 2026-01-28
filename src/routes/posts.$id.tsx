@@ -1,9 +1,14 @@
-import { createFileRoute } from '@tanstack/react-router'
-
+import { createFileRoute, Link } from '@tanstack/react-router'
 export const Route = createFileRoute('/posts/$id')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>Hello "/posts/$id"!</div>
+  const {id}=Route.useParams();
+  return (
+    <div>
+      <Link from={Route.fullPath} to ="/login">Login</Link>
+      <div>Hello {id}</div>
+    </div>
+  )
 }

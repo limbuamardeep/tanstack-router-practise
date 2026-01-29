@@ -12,24 +12,31 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PostsRouteImport } from './routes/posts'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
+import { Route as CategoriesRouteRouteImport } from './routes/categories/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactUsIndexRouteImport } from './routes/contact-us/index'
 import { Route as PostsIdRouteImport } from './routes/posts.$id'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
 import { Route as DashboardLayoutRouteImport } from './routes/dashboard/_layout'
+import { Route as ContactUsCountryRouteImport } from './routes/contact-us/$country'
 import { Route as PathlessLayoutBRouteImport } from './routes/_pathlessLayout.b'
 import { Route as PathlessLayoutARouteImport } from './routes/_pathlessLayout.a'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
+import { Route as CategoriesCategoryIdRouteRouteImport } from './routes/categories/$categoryId/route'
 import { Route as PostsIdEditRouteImport } from './routes/posts_.$id.edit'
 import { Route as PostsChar123CategoryChar125Char123SlugChar125RouteImport } from './routes/posts/{-$category}.{-$slug}'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
 import { Route as DashboardLayoutSettingRouteImport } from './routes/dashboard/_layout.setting'
 import { Route as DashboardLayoutAboutRouteImport } from './routes/dashboard/_layout.about'
+import { Route as ContactUsCountryCityRouteImport } from './routes/contact-us/$country.$city'
+import { Route as CategoriesCategoryIdSubcategoryIdRouteRouteImport } from './routes/categories/$categoryId/$subcategoryId/route'
 import { Route as AppUsersUserIdRouteRouteImport } from './routes/app/users/$userId.route'
 import { Route as AppUsersUserIdSettingRouteImport } from './routes/app/users/$userId.setting'
 import { Route as AppUsersUserIdEditRouteImport } from './routes/app/users/$userId.edit'
+import { Route as CategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport } from './routes/categories/$categoryId/$subcategoryId/$productId/route'
 
 const PostsRoute = PostsRouteImport.update({
   id: '/posts',
@@ -45,9 +52,19 @@ const PathlessLayoutRoute = PathlessLayoutRouteImport.update({
   id: '/_pathlessLayout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesRouteRoute = CategoriesRouteRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsIndexRoute = ContactUsIndexRouteImport.update({
+  id: '/contact-us/',
+  path: '/contact-us/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsIdRoute = PostsIdRouteImport.update({
@@ -70,6 +87,11 @@ const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactUsCountryRoute = ContactUsCountryRouteImport.update({
+  id: '/contact-us/$country',
+  path: '/contact-us/$country',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PathlessLayoutBRoute = PathlessLayoutBRouteImport.update({
   id: '/b',
   path: '/b',
@@ -90,6 +112,12 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesCategoryIdRouteRoute =
+  CategoriesCategoryIdRouteRouteImport.update({
+    id: '/$categoryId',
+    path: '/$categoryId',
+    getParentRoute: () => CategoriesRouteRoute,
+  } as any)
 const PostsIdEditRoute = PostsIdEditRouteImport.update({
   id: '/posts_/$id/edit',
   path: '/posts/$id/edit',
@@ -121,6 +149,17 @@ const DashboardLayoutAboutRoute = DashboardLayoutAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
+const ContactUsCountryCityRoute = ContactUsCountryCityRouteImport.update({
+  id: '/$city',
+  path: '/$city',
+  getParentRoute: () => ContactUsCountryRoute,
+} as any)
+const CategoriesCategoryIdSubcategoryIdRouteRoute =
+  CategoriesCategoryIdSubcategoryIdRouteRouteImport.update({
+    id: '/$subcategoryId',
+    path: '/$subcategoryId',
+    getParentRoute: () => CategoriesCategoryIdRouteRoute,
+  } as any)
 const AppUsersUserIdRouteRoute = AppUsersUserIdRouteRouteImport.update({
   id: '/users/$userId',
   path: '/users/$userId',
@@ -136,72 +175,99 @@ const AppUsersUserIdEditRoute = AppUsersUserIdEditRouteImport.update({
   path: '/edit',
   getParentRoute: () => AppUsersUserIdRouteRoute,
 } as any)
+const CategoriesCategoryIdSubcategoryIdProductIdRouteRoute =
+  CategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport.update({
+    id: '/$productId',
+    path: '/$productId',
+    getParentRoute: () => CategoriesCategoryIdSubcategoryIdRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRouteRouteWithChildren
   '/app': typeof AppRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
+  '/categories/$categoryId': typeof CategoriesCategoryIdRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/a': typeof PathlessLayoutARoute
   '/b': typeof PathlessLayoutBRoute
+  '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/posts/$id': typeof PostsIdRoute
+  '/contact-us/': typeof ContactUsIndexRoute
   '/app/users/$userId': typeof AppUsersUserIdRouteRouteWithChildren
+  '/categories/$categoryId/$subcategoryId': typeof CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
+  '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/dashboard/about': typeof DashboardLayoutAboutRoute
   '/dashboard/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts/$id/edit': typeof PostsIdEditRoute
+  '/categories/$categoryId/$subcategoryId/$productId': typeof CategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
   '/app/users/$userId/setting': typeof AppUsersUserIdSettingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRouteRouteWithChildren
   '/app': typeof AppRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
+  '/categories/$categoryId': typeof CategoriesCategoryIdRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/a': typeof PathlessLayoutARoute
   '/b': typeof PathlessLayoutBRoute
+  '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/posts/$id': typeof PostsIdRoute
+  '/contact-us': typeof ContactUsIndexRoute
   '/app/users/$userId': typeof AppUsersUserIdRouteRouteWithChildren
+  '/categories/$categoryId/$subcategoryId': typeof CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
+  '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/dashboard/about': typeof DashboardLayoutAboutRoute
   '/dashboard/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts/$id/edit': typeof PostsIdEditRoute
+  '/categories/$categoryId/$subcategoryId/$productId': typeof CategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
   '/app/users/$userId/setting': typeof AppUsersUserIdSettingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRouteRouteWithChildren
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
   '/app': typeof AppRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
+  '/categories/$categoryId': typeof CategoriesCategoryIdRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/_pathlessLayout/a': typeof PathlessLayoutARoute
   '/_pathlessLayout/b': typeof PathlessLayoutBRoute
+  '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/dashboard/_layout': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/posts/$id': typeof PostsIdRoute
+  '/contact-us/': typeof ContactUsIndexRoute
   '/app/users/$userId': typeof AppUsersUserIdRouteRouteWithChildren
+  '/categories/$categoryId/$subcategoryId': typeof CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
+  '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/dashboard/_layout/about': typeof DashboardLayoutAboutRoute
   '/dashboard/_layout/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts_/$id/edit': typeof PostsIdEditRoute
+  '/categories/$categoryId/$subcategoryId/$productId': typeof CategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
   '/app/users/$userId/setting': typeof AppUsersUserIdSettingRoute
 }
@@ -209,82 +275,106 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/categories'
     | '/app'
     | '/posts'
+    | '/categories/$categoryId'
     | '/login'
     | '/register'
     | '/a'
     | '/b'
+    | '/contact-us/$country'
     | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/posts/$id'
+    | '/contact-us/'
     | '/app/users/$userId'
+    | '/categories/$categoryId/$subcategoryId'
+    | '/contact-us/$country/$city'
     | '/dashboard/about'
     | '/dashboard/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts/$id/edit'
+    | '/categories/$categoryId/$subcategoryId/$productId'
     | '/app/users/$userId/edit'
     | '/app/users/$userId/setting'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/categories'
     | '/app'
     | '/posts'
+    | '/categories/$categoryId'
     | '/login'
     | '/register'
     | '/a'
     | '/b'
+    | '/contact-us/$country'
     | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/posts/$id'
+    | '/contact-us'
     | '/app/users/$userId'
+    | '/categories/$categoryId/$subcategoryId'
+    | '/contact-us/$country/$city'
     | '/dashboard/about'
     | '/dashboard/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts/$id/edit'
+    | '/categories/$categoryId/$subcategoryId/$productId'
     | '/app/users/$userId/edit'
     | '/app/users/$userId/setting'
   id:
     | '__root__'
     | '/'
+    | '/categories'
     | '/_pathlessLayout'
     | '/app'
     | '/posts'
+    | '/categories/$categoryId'
     | '/(auth)/login'
     | '/(auth)/register'
     | '/_pathlessLayout/a'
     | '/_pathlessLayout/b'
+    | '/contact-us/$country'
     | '/dashboard/_layout'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/posts/$id'
+    | '/contact-us/'
     | '/app/users/$userId'
+    | '/categories/$categoryId/$subcategoryId'
+    | '/contact-us/$country/$city'
     | '/dashboard/_layout/about'
     | '/dashboard/_layout/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts_/$id/edit'
+    | '/categories/$categoryId/$subcategoryId/$productId'
     | '/app/users/$userId/edit'
     | '/app/users/$userId/setting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CategoriesRouteRoute: typeof CategoriesRouteRouteWithChildren
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
   AppRoute: typeof AppRouteWithChildren
   PostsRoute: typeof PostsRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
+  ContactUsCountryRoute: typeof ContactUsCountryRouteWithChildren
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ContactUsIndexRoute: typeof ContactUsIndexRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
   PostsIdEditRoute: typeof PostsIdEditRoute
@@ -313,11 +403,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathlessLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us/': {
+      id: '/contact-us/'
+      path: '/contact-us'
+      fullPath: '/contact-us/'
+      preLoaderRoute: typeof ContactUsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts/$id': {
@@ -348,6 +452,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact-us/$country': {
+      id: '/contact-us/$country'
+      path: '/contact-us/$country'
+      fullPath: '/contact-us/$country'
+      preLoaderRoute: typeof ContactUsCountryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_pathlessLayout/b': {
       id: '/_pathlessLayout/b'
       path: '/b'
@@ -375,6 +486,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login'
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/categories/$categoryId': {
+      id: '/categories/$categoryId'
+      path: '/$categoryId'
+      fullPath: '/categories/$categoryId'
+      preLoaderRoute: typeof CategoriesCategoryIdRouteRouteImport
+      parentRoute: typeof CategoriesRouteRoute
     }
     '/posts_/$id/edit': {
       id: '/posts_/$id/edit'
@@ -418,6 +536,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutAboutRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
+    '/contact-us/$country/$city': {
+      id: '/contact-us/$country/$city'
+      path: '/$city'
+      fullPath: '/contact-us/$country/$city'
+      preLoaderRoute: typeof ContactUsCountryCityRouteImport
+      parentRoute: typeof ContactUsCountryRoute
+    }
+    '/categories/$categoryId/$subcategoryId': {
+      id: '/categories/$categoryId/$subcategoryId'
+      path: '/$subcategoryId'
+      fullPath: '/categories/$categoryId/$subcategoryId'
+      preLoaderRoute: typeof CategoriesCategoryIdSubcategoryIdRouteRouteImport
+      parentRoute: typeof CategoriesCategoryIdRouteRoute
+    }
     '/app/users/$userId': {
       id: '/app/users/$userId'
       path: '/users/$userId'
@@ -439,8 +571,57 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUsersUserIdEditRouteImport
       parentRoute: typeof AppUsersUserIdRouteRoute
     }
+    '/categories/$categoryId/$subcategoryId/$productId': {
+      id: '/categories/$categoryId/$subcategoryId/$productId'
+      path: '/$productId'
+      fullPath: '/categories/$categoryId/$subcategoryId/$productId'
+      preLoaderRoute: typeof CategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport
+      parentRoute: typeof CategoriesCategoryIdSubcategoryIdRouteRoute
+    }
   }
 }
+
+interface CategoriesCategoryIdSubcategoryIdRouteRouteChildren {
+  CategoriesCategoryIdSubcategoryIdProductIdRouteRoute: typeof CategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+}
+
+const CategoriesCategoryIdSubcategoryIdRouteRouteChildren: CategoriesCategoryIdSubcategoryIdRouteRouteChildren =
+  {
+    CategoriesCategoryIdSubcategoryIdProductIdRouteRoute:
+      CategoriesCategoryIdSubcategoryIdProductIdRouteRoute,
+  }
+
+const CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren =
+  CategoriesCategoryIdSubcategoryIdRouteRoute._addFileChildren(
+    CategoriesCategoryIdSubcategoryIdRouteRouteChildren,
+  )
+
+interface CategoriesCategoryIdRouteRouteChildren {
+  CategoriesCategoryIdSubcategoryIdRouteRoute: typeof CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
+}
+
+const CategoriesCategoryIdRouteRouteChildren: CategoriesCategoryIdRouteRouteChildren =
+  {
+    CategoriesCategoryIdSubcategoryIdRouteRoute:
+      CategoriesCategoryIdSubcategoryIdRouteRouteWithChildren,
+  }
+
+const CategoriesCategoryIdRouteRouteWithChildren =
+  CategoriesCategoryIdRouteRoute._addFileChildren(
+    CategoriesCategoryIdRouteRouteChildren,
+  )
+
+interface CategoriesRouteRouteChildren {
+  CategoriesCategoryIdRouteRoute: typeof CategoriesCategoryIdRouteRouteWithChildren
+}
+
+const CategoriesRouteRouteChildren: CategoriesRouteRouteChildren = {
+  CategoriesCategoryIdRouteRoute: CategoriesCategoryIdRouteRouteWithChildren,
+}
+
+const CategoriesRouteRouteWithChildren = CategoriesRouteRoute._addFileChildren(
+  CategoriesRouteRouteChildren,
+)
 
 interface PathlessLayoutRouteChildren {
   PathlessLayoutARoute: typeof PathlessLayoutARoute
@@ -492,6 +673,17 @@ const PostsRouteChildren: PostsRouteChildren = {
 
 const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
 
+interface ContactUsCountryRouteChildren {
+  ContactUsCountryCityRoute: typeof ContactUsCountryCityRoute
+}
+
+const ContactUsCountryRouteChildren: ContactUsCountryRouteChildren = {
+  ContactUsCountryCityRoute: ContactUsCountryCityRoute,
+}
+
+const ContactUsCountryRouteWithChildren =
+  ContactUsCountryRoute._addFileChildren(ContactUsCountryRouteChildren)
+
 interface DashboardLayoutRouteChildren {
   DashboardLayoutAboutRoute: typeof DashboardLayoutAboutRoute
   DashboardLayoutSettingRoute: typeof DashboardLayoutSettingRoute
@@ -508,14 +700,17 @@ const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CategoriesRouteRoute: CategoriesRouteRouteWithChildren,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
   AppRoute: AppRouteWithChildren,
   PostsRoute: PostsRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
+  ContactUsCountryRoute: ContactUsCountryRouteWithChildren,
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ContactUsIndexRoute: ContactUsIndexRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
   PostsIdEditRoute: PostsIdEditRoute,

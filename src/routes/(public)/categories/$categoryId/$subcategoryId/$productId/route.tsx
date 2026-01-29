@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from '@tanstack/react-router'
 import { getProduct } from '@/lib/mock'
 
 export const Route = createFileRoute(
-  '/categories/$categoryId/$subcategoryId/$productId',
+  '/(public)/categories/$categoryId/$subcategoryId/$productId',
 )({
   component: RouteComponent,
   loader: async ({ params: { productId } }) => {

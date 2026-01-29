@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
 import { getCategories } from '@/lib/mock'
 
-export const Route = createFileRoute('/categories')({
+export const Route = createFileRoute('/(public)/categories')({
   component: RouteComponent,
   loader: async () => {
     const categories = await getCategories()

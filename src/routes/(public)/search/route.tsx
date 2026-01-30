@@ -1,7 +1,7 @@
 import { Link,createFileRoute  } from '@tanstack/react-router'
 import { searchSchema } from './-schema/SearchSchema.zod'
-import { FilterPanel } from './-components/Filterpanel'
 import { searchProducts } from '@/lib/mock'
+import { FilterPanel } from './-components/FilterPanel'
 
 
 export const Route = createFileRoute('/(public)/search')({

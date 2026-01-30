@@ -9,20 +9,20 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+import { useRouterContextState } from './lib/use-router-context-state.tsx'
 
 // Create a new router instance
-
 const TanStackQueryProviderContext = TanStackQueryProvider.getContext()
+const routerContextState = useRouterContextState(TanStackQueryProviderContext.queryClient)
+
 const router = createRouter({
   routeTree,
-  context: {
-    ...TanStackQueryProviderContext,
-  },
+  context: routerContextState,
   defaultPreload: 'intent',
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
-  defaultPendingMs:0
+  defaultPendingMs: 0,
 })
 
 // Register the router instance for type safety

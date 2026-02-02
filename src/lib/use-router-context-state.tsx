@@ -1,32 +1,32 @@
-import type { RouterContext, UserRole } from "@/routes/__root";
-import { useState, useEffect } from "react";
-import { QueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from 'react'
+import type { QueryClient } from '@tanstack/react-query'
+import type { RouterContext, UserRole } from '@/routes/__root'
 
 export function useRouterContextState(queryClient: QueryClient): RouterContext {
   const [role, setRole] = useState<UserRole>(() => {
-    const savedRole = localStorage.getItem("userRole") as UserRole;
-    return savedRole || null;
-  });
+    const savedRole = localStorage.getItem('userRole') as UserRole
+    return savedRole || null
+  })
 
   useEffect(() => {
     if (role) {
-      localStorage.setItem("userRole", role);
+      localStorage.setItem('userRole', role)
     } else {
-      localStorage.removeItem("userRole");
+      localStorage.removeItem('userRole')
     }
-  }, [role]);
+  }, [role])
 
-  const login = (newRole: "admin" | "client") => {
-    setRole(newRole);
-  };
+  const login = (newRole: 'admin' | 'client') => {
+    setRole(newRole)
+  }
 
   const logout = () => {
-    setRole(null);
-  };
+    setRole(null)
+  }
 
-  const isAdmin = role === "admin";
-  const isClient = role === "client";
-  const isAuthenticated = !!role;
+  const isAdmin = role === 'admin'
+  const isClient = role === 'client'
+  const isAuthenticated = !!role
 
   return {
     role,
@@ -36,5 +36,5 @@ export function useRouterContextState(queryClient: QueryClient): RouterContext {
     isClient,
     isAuthenticated,
     queryClient,
-  };
+  }
 }

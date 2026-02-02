@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
 import { getCountries } from '@/lib/mock'
 
-export const Route = createFileRoute('/(public)/contact-us/')({
+export const Route = createFileRoute('/client/_clientLayout/contact-us/')({
   component: RouteComponent,
   loader: async () => {
     const countries = await getCountries()
@@ -17,10 +17,10 @@ function RouteComponent() {
       <div className="w-full">
         <h2 className="font-bold text-xl">What country are you at?</h2>
         <div className=" list justify-center items-center mt-2 p-4">
-          {countries.map((country) => (
+          {countries.map((country: any) => (
             <Link
               key={country.name}
-              to="/contact-us/$country"
+              to="/client/contact-us/$country"
               params={{ country: country.name }}
               className="flex shadow-xl justify-center items-center border border-gray-500 w-full p-2 "
               activeProps={{ className: 'bg-gray-500' }}

@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute, notFound } from '@tanstack/react-router'
 import { getSubcategories } from '@/lib/mock'
 
-export const Route = createFileRoute('/(public)/categories/$categoryId')({
+export const Route = createFileRoute('/admin/_adminLayout/categories/$categoryId')({
   component: RouteComponent,
   loader: async ({ params: { categoryId } }) => {
     const subcategories = await getSubcategories(categoryId)
@@ -24,7 +24,7 @@ function RouteComponent() {
           <Link
             key={subcategory.id}
             from={Route.fullPath}
-            to="/categories/$categoryId/$subcategoryId"
+            to="/admin/categories/$categoryId/$subcategoryId"
             params={{ subcategoryId: subcategory.id }}
             className="card"
             activeProps={{className:"active-card"}}

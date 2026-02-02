@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute, notFound } from '@tanstack/react-router'
 import { getCities } from '@/lib/mock'
 
-export const Route = createFileRoute('/(public)/contact-us/$country')({
+export const Route = createFileRoute('/client/_clientLayout/contact-us/$country')({
   component: RouteComponent,
   loader: async ({ params: { country } }) => {
     const cities = await getCities(country)
@@ -21,7 +21,7 @@ function RouteComponent() {
         {cities.map((city) => (
           <Link
             from={Route.fullPath}
-            to="/contact-us/$country/$city"
+            to="/client/contact-us/$country/$city"
             className="card"
             params={{ city: city }}
             key={city}

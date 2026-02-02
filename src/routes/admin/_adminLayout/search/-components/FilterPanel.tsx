@@ -2,7 +2,7 @@ import { Link, getRouteApi } from '@tanstack/react-router'
 import { useState } from 'react'
 import type { SearchParams } from '../-schema/SearchSchema.zod'
 
-const searchRouteApi = getRouteApi('/(public)/search')
+const searchRouteApi = getRouteApi('/admin/_adminLayout/search')
 export const FilterPanel = () => {
   const { filter, page, sort } = searchRouteApi.useSearch()
   const [filterInput, setFilterInput] = useState(filter)
@@ -26,7 +26,7 @@ export const FilterPanel = () => {
         />
         <Link
           className="outlined-button"
-          to="/search"
+          to="/admin/search"
           search={getSearchParams({ filter: filterInput })}
         >
           Apply Filter
@@ -43,7 +43,7 @@ export const FilterPanel = () => {
         />
         <Link
           className="outlined-button"
-          to="/search"
+          to="/admin/search"
           search={getSearchParams({ page: parseInt(pageInput) || 1 })}
         >
           Go to page
@@ -51,7 +51,7 @@ export const FilterPanel = () => {
 
         <Link
           className="outlined-button"
-          to="/search"
+          to="/admin/search"
           search={getSearchParams({ page: Math.max(1, page - 1) })}
           disabled={page <= 1}
         >
@@ -60,7 +60,7 @@ export const FilterPanel = () => {
 
         <Link
           className="outlined-button"
-          to="/search"
+          to="/admin/search"
           search={getSearchParams({ page: Math.max(page + 1) })}
         >
           Next

@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
 import { getCategories } from '@/lib/mock'
 
-export const Route = createFileRoute('/(public)/categories')({
+export const Route = createFileRoute('/admin/_adminLayout/categories')({
   component: RouteComponent,
   loader: async () => {
     const categories = await getCategories()
@@ -19,7 +19,7 @@ function RouteComponent() {
       <div className="list">
         {categories.map((category) => (
           <Link
-            to="/categories/$categoryId"
+            to="/admin/categories/$categoryId"
             key={category.name}
             className="card"
             params={{ categoryId: category.id }}

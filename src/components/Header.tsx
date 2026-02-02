@@ -1,9 +1,10 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useRouteContext } from '@tanstack/react-router'
 
 import { useState } from 'react'
 import {
   ClipboardType,
   Home,
+  LogIn,
   LogOut,
   Menu,
   Network,
@@ -13,7 +14,8 @@ import {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const { isAuthenticated, role, logout } = useRouteContext()
+  const { isAuthenticated, role, logout } = useRouteContext({from:"__root__"})
+
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Link, Outlet, createFileRoute, notFound } from '@tanstack/react-router'
 import { getProducts } from '@/lib/mock'
 
-export const Route = createFileRoute('/(public)/categories/$categoryId/$subcategoryId')({
+export const Route = createFileRoute('/admin/_adminLayout/categories/$categoryId/$subcategoryId')({
   component: RouteComponent,
   loader: async ({ params: { subcategoryId } }) => {
     const products = await getProducts(subcategoryId)
@@ -21,7 +21,7 @@ function RouteComponent() {
         {products.map((product) => (
           <Link
             from={Route.fullPath}
-            to="/categories/$categoryId/$subcategoryId/$productId"
+            to="/admin/categories/$categoryId/$subcategoryId/$productId"
             className="card"
             activeProps={{ className: 'active-card' }}
             params={{ productId: product.id }}

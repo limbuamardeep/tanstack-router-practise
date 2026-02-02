@@ -1,10 +1,17 @@
 import { Link,createFileRoute  } from '@tanstack/react-router'
 import { searchSchema } from './-schema/SearchSchema.zod'
-import { searchProducts } from '@/lib/mock'
 import { FilterPanel } from './-components/FilterPanel'
+import { searchProducts } from '@/lib/mock'
 
-
-export const Route = createFileRoute('/(public)/search')({
+interface Product {
+  id: string,
+  name: string
+  categoryId:string
+  subcategoryId:string
+  description: string
+  price: string
+}
+export const Route = createFileRoute('/admin/_adminLayout/search')({
   component: RouteComponent,
   validateSearch: searchSchema,
   loaderDeps: ({ search }) => search,
@@ -20,10 +27,10 @@ function RouteComponent() {
     <div>
       <FilterPanel />
       <div className="list">
-        {products.map((product) => (
+        {products.map((product:Product) => (
           <Link
             className="card"
-            to="/categories/$categoryId/$subcategoryId/$productId"
+            to="/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId"
             params={{
               productId: product.id,
               categoryId: product.categoryId,

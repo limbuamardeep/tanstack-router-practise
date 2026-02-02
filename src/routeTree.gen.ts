@@ -18,28 +18,34 @@ import { Route as DisplayDisplayRouteImport } from './routes/display/Display'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
 import { Route as DashboardLayoutRouteImport } from './routes/dashboard/_layout'
-import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as PathlessLayoutBRouteImport } from './routes/_pathlessLayout.b'
 import { Route as PathlessLayoutARouteImport } from './routes/_pathlessLayout.a'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
-import { Route as publicSearchRouteRouteImport } from './routes/(public)/search/route'
-import { Route as publicCategoriesRouteRouteImport } from './routes/(public)/categories/route'
-import { Route as publicContactUsIndexRouteImport } from './routes/(public)/contact-us/index'
+import { Route as ClientClientLayoutRouteRouteImport } from './routes/client/_clientLayout/route'
+import { Route as AdminAdminLayoutRouteRouteImport } from './routes/admin/_adminLayout/route'
 import { Route as PostsIdEditRouteImport } from './routes/posts_.$id.edit'
 import { Route as PostsChar123CategoryChar125Char123SlugChar125RouteImport } from './routes/posts/{-$category}.{-$slug}'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
 import { Route as DashboardLayoutSettingRouteImport } from './routes/dashboard/_layout.setting'
 import { Route as DashboardLayoutAboutRouteImport } from './routes/dashboard/_layout.about'
-import { Route as publicContactUsCountryRouteImport } from './routes/(public)/contact-us/$country'
-import { Route as publicCategoriesCategoryIdRouteRouteImport } from './routes/(public)/categories/$categoryId/route'
-import { Route as publicContactUsCountryCityRouteImport } from './routes/(public)/contact-us/$country.$city'
-import { Route as publicCategoriesCategoryIdSubcategoryIdRouteRouteImport } from './routes/(public)/categories/$categoryId/$subcategoryId/route'
+import { Route as ClientClientLayoutDashboardRouteRouteImport } from './routes/client/_clientLayout/dashboard/route'
+import { Route as AdminAdminLayoutSearchRouteRouteImport } from './routes/admin/_adminLayout/search/route'
+import { Route as AdminAdminLayoutDashboardRouteRouteImport } from './routes/admin/_adminLayout/dashboard/route'
+import { Route as AdminAdminLayoutCategoriesRouteRouteImport } from './routes/admin/_adminLayout/categories/route'
+import { Route as ClientClientLayoutContactUsIndexRouteImport } from './routes/client/_clientLayout/contact-us/index'
+import { Route as ClientClientLayoutContactUsCountryRouteImport } from './routes/client/_clientLayout/contact-us/$country'
+import { Route as AdminAdminLayoutCategoriesCategoryIdRouteRouteImport } from './routes/admin/_adminLayout/categories/$categoryId/route'
 import { Route as publicAppUsersUserIdRouteRouteImport } from './routes/(public)/app/users/$userId.route'
+import { Route as ClientClientLayoutContactUsCountryCityRouteImport } from './routes/client/_clientLayout/contact-us/$country.$city'
 import { Route as publicAppUsersUserIdSettingRouteImport } from './routes/(public)/app/users/$userId.setting'
 import { Route as publicAppUsersUserIdEditRouteImport } from './routes/(public)/app/users/$userId.edit'
-import { Route as publicCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport } from './routes/(public)/categories/$categoryId/$subcategoryId/$productId/route'
+import { Route as AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteImport } from './routes/admin/_adminLayout/categories/$categoryId/$subcategoryId/route'
+import { Route as AdminAdminLayoutAppUsersUserIdRouteRouteImport } from './routes/admin/_adminLayout/app/users/$userId.route'
+import { Route as AdminAdminLayoutAppUsersUserIdSettingRouteImport } from './routes/admin/_adminLayout/app/users/$userId.setting'
+import { Route as AdminAdminLayoutAppUsersUserIdEditRouteImport } from './routes/admin/_adminLayout/app/users/$userId.edit'
+import { Route as AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport } from './routes/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId/route'
 
 const PostsRoute = PostsRouteImport.update({
   id: '/posts',
@@ -85,11 +91,6 @@ const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/admin/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PathlessLayoutBRoute = PathlessLayoutBRouteImport.update({
   id: '/b',
   path: '/b',
@@ -110,19 +111,14 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const publicSearchRouteRoute = publicSearchRouteRouteImport.update({
-  id: '/(public)/search',
-  path: '/search',
+const ClientClientLayoutRouteRoute = ClientClientLayoutRouteRouteImport.update({
+  id: '/client/_clientLayout',
+  path: '/client',
   getParentRoute: () => rootRouteImport,
 } as any)
-const publicCategoriesRouteRoute = publicCategoriesRouteRouteImport.update({
-  id: '/(public)/categories',
-  path: '/categories',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const publicContactUsIndexRoute = publicContactUsIndexRouteImport.update({
-  id: '/(public)/contact-us/',
-  path: '/contact-us/',
+const AdminAdminLayoutRouteRoute = AdminAdminLayoutRouteRouteImport.update({
+  id: '/admin/_adminLayout',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsIdEditRoute = PostsIdEditRouteImport.update({
@@ -156,34 +152,59 @@ const DashboardLayoutAboutRoute = DashboardLayoutAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
-const publicContactUsCountryRoute = publicContactUsCountryRouteImport.update({
-  id: '/(public)/contact-us/$country',
-  path: '/contact-us/$country',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const publicCategoriesCategoryIdRouteRoute =
-  publicCategoriesCategoryIdRouteRouteImport.update({
+const ClientClientLayoutDashboardRouteRoute =
+  ClientClientLayoutDashboardRouteRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => ClientClientLayoutRouteRoute,
+  } as any)
+const AdminAdminLayoutSearchRouteRoute =
+  AdminAdminLayoutSearchRouteRouteImport.update({
+    id: '/search',
+    path: '/search',
+    getParentRoute: () => AdminAdminLayoutRouteRoute,
+  } as any)
+const AdminAdminLayoutDashboardRouteRoute =
+  AdminAdminLayoutDashboardRouteRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AdminAdminLayoutRouteRoute,
+  } as any)
+const AdminAdminLayoutCategoriesRouteRoute =
+  AdminAdminLayoutCategoriesRouteRouteImport.update({
+    id: '/categories',
+    path: '/categories',
+    getParentRoute: () => AdminAdminLayoutRouteRoute,
+  } as any)
+const ClientClientLayoutContactUsIndexRoute =
+  ClientClientLayoutContactUsIndexRouteImport.update({
+    id: '/contact-us/',
+    path: '/contact-us/',
+    getParentRoute: () => ClientClientLayoutRouteRoute,
+  } as any)
+const ClientClientLayoutContactUsCountryRoute =
+  ClientClientLayoutContactUsCountryRouteImport.update({
+    id: '/contact-us/$country',
+    path: '/contact-us/$country',
+    getParentRoute: () => ClientClientLayoutRouteRoute,
+  } as any)
+const AdminAdminLayoutCategoriesCategoryIdRouteRoute =
+  AdminAdminLayoutCategoriesCategoryIdRouteRouteImport.update({
     id: '/$categoryId',
     path: '/$categoryId',
-    getParentRoute: () => publicCategoriesRouteRoute,
-  } as any)
-const publicContactUsCountryCityRoute =
-  publicContactUsCountryCityRouteImport.update({
-    id: '/$city',
-    path: '/$city',
-    getParentRoute: () => publicContactUsCountryRoute,
-  } as any)
-const publicCategoriesCategoryIdSubcategoryIdRouteRoute =
-  publicCategoriesCategoryIdSubcategoryIdRouteRouteImport.update({
-    id: '/$subcategoryId',
-    path: '/$subcategoryId',
-    getParentRoute: () => publicCategoriesCategoryIdRouteRoute,
+    getParentRoute: () => AdminAdminLayoutCategoriesRouteRoute,
   } as any)
 const publicAppUsersUserIdRouteRoute =
   publicAppUsersUserIdRouteRouteImport.update({
     id: '/(public)/app/users/$userId',
     path: '/app/users/$userId',
     getParentRoute: () => rootRouteImport,
+  } as any)
+const ClientClientLayoutContactUsCountryCityRoute =
+  ClientClientLayoutContactUsCountryCityRouteImport.update({
+    id: '/$city',
+    path: '/$city',
+    getParentRoute: () => ClientClientLayoutContactUsCountryRoute,
   } as any)
 const publicAppUsersUserIdSettingRoute =
   publicAppUsersUserIdSettingRouteImport.update({
@@ -197,76 +218,115 @@ const publicAppUsersUserIdEditRoute =
     path: '/edit',
     getParentRoute: () => publicAppUsersUserIdRouteRoute,
   } as any)
-const publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute =
-  publicCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport.update({
-    id: '/$productId',
-    path: '/$productId',
-    getParentRoute: () => publicCategoriesCategoryIdSubcategoryIdRouteRoute,
+const AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute =
+  AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteImport.update({
+    id: '/$subcategoryId',
+    path: '/$subcategoryId',
+    getParentRoute: () => AdminAdminLayoutCategoriesCategoryIdRouteRoute,
   } as any)
+const AdminAdminLayoutAppUsersUserIdRouteRoute =
+  AdminAdminLayoutAppUsersUserIdRouteRouteImport.update({
+    id: '/app/users/$userId',
+    path: '/app/users/$userId',
+    getParentRoute: () => AdminAdminLayoutRouteRoute,
+  } as any)
+const AdminAdminLayoutAppUsersUserIdSettingRoute =
+  AdminAdminLayoutAppUsersUserIdSettingRouteImport.update({
+    id: '/setting',
+    path: '/setting',
+    getParentRoute: () => AdminAdminLayoutAppUsersUserIdRouteRoute,
+  } as any)
+const AdminAdminLayoutAppUsersUserIdEditRoute =
+  AdminAdminLayoutAppUsersUserIdEditRouteImport.update({
+    id: '/edit',
+    path: '/edit',
+    getParentRoute: () => AdminAdminLayoutAppUsersUserIdRouteRoute,
+  } as any)
+const AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute =
+  AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport.update(
+    {
+      id: '/$productId',
+      path: '/$productId',
+      getParentRoute: () =>
+        AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute,
+    } as any,
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
   '/posts': typeof PostsRouteWithChildren
-  '/categories': typeof publicCategoriesRouteRouteWithChildren
-  '/search': typeof publicSearchRouteRoute
+  '/admin': typeof AdminAdminLayoutRouteRouteWithChildren
+  '/client': typeof ClientClientLayoutRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/a': typeof PathlessLayoutARoute
   '/b': typeof PathlessLayoutBRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/display/Display': typeof DisplayDisplayRoute
   '/posts/$id': typeof PostsIdRoute
-  '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/contact-us/$country': typeof publicContactUsCountryRouteWithChildren
+  '/admin/categories': typeof AdminAdminLayoutCategoriesRouteRouteWithChildren
+  '/admin/dashboard': typeof AdminAdminLayoutDashboardRouteRoute
+  '/admin/search': typeof AdminAdminLayoutSearchRouteRoute
+  '/client/dashboard': typeof ClientClientLayoutDashboardRouteRoute
   '/dashboard/about': typeof DashboardLayoutAboutRoute
   '/dashboard/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts/$id/edit': typeof PostsIdEditRoute
-  '/contact-us/': typeof publicContactUsIndexRoute
   '/app/users/$userId': typeof publicAppUsersUserIdRouteRouteWithChildren
-  '/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
-  '/contact-us/$country/$city': typeof publicContactUsCountryCityRoute
-  '/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/categories/$categoryId': typeof AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren
+  '/client/contact-us/$country': typeof ClientClientLayoutContactUsCountryRouteWithChildren
+  '/client/contact-us/': typeof ClientClientLayoutContactUsIndexRoute
+  '/admin/app/users/$userId': typeof AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren
+  '/admin/categories/$categoryId/$subcategoryId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
   '/app/users/$userId/edit': typeof publicAppUsersUserIdEditRoute
   '/app/users/$userId/setting': typeof publicAppUsersUserIdSettingRoute
+  '/client/contact-us/$country/$city': typeof ClientClientLayoutContactUsCountryCityRoute
+  '/admin/categories/$categoryId/$subcategoryId/$productId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/app/users/$userId/edit': typeof AdminAdminLayoutAppUsersUserIdEditRoute
+  '/admin/app/users/$userId/setting': typeof AdminAdminLayoutAppUsersUserIdSettingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
   '/posts': typeof PostsRouteWithChildren
-  '/categories': typeof publicCategoriesRouteRouteWithChildren
-  '/search': typeof publicSearchRouteRoute
+  '/admin': typeof AdminAdminLayoutRouteRouteWithChildren
+  '/client': typeof ClientClientLayoutRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/a': typeof PathlessLayoutARoute
   '/b': typeof PathlessLayoutBRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/display/Display': typeof DisplayDisplayRoute
   '/posts/$id': typeof PostsIdRoute
-  '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/contact-us/$country': typeof publicContactUsCountryRouteWithChildren
+  '/admin/categories': typeof AdminAdminLayoutCategoriesRouteRouteWithChildren
+  '/admin/dashboard': typeof AdminAdminLayoutDashboardRouteRoute
+  '/admin/search': typeof AdminAdminLayoutSearchRouteRoute
+  '/client/dashboard': typeof ClientClientLayoutDashboardRouteRoute
   '/dashboard/about': typeof DashboardLayoutAboutRoute
   '/dashboard/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts/$id/edit': typeof PostsIdEditRoute
-  '/contact-us': typeof publicContactUsIndexRoute
   '/app/users/$userId': typeof publicAppUsersUserIdRouteRouteWithChildren
-  '/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
-  '/contact-us/$country/$city': typeof publicContactUsCountryCityRoute
-  '/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/categories/$categoryId': typeof AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren
+  '/client/contact-us/$country': typeof ClientClientLayoutContactUsCountryRouteWithChildren
+  '/client/contact-us': typeof ClientClientLayoutContactUsIndexRoute
+  '/admin/app/users/$userId': typeof AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren
+  '/admin/categories/$categoryId/$subcategoryId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
   '/app/users/$userId/edit': typeof publicAppUsersUserIdEditRoute
   '/app/users/$userId/setting': typeof publicAppUsersUserIdSettingRoute
+  '/client/contact-us/$country/$city': typeof ClientClientLayoutContactUsCountryCityRoute
+  '/admin/categories/$categoryId/$subcategoryId/$productId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/app/users/$userId/edit': typeof AdminAdminLayoutAppUsersUserIdEditRoute
+  '/admin/app/users/$userId/setting': typeof AdminAdminLayoutAppUsersUserIdSettingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -274,33 +334,39 @@ export interface FileRoutesById {
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
   '/app': typeof AppRoute
   '/posts': typeof PostsRouteWithChildren
-  '/(public)/categories': typeof publicCategoriesRouteRouteWithChildren
-  '/(public)/search': typeof publicSearchRouteRoute
+  '/admin/_adminLayout': typeof AdminAdminLayoutRouteRouteWithChildren
+  '/client/_clientLayout': typeof ClientClientLayoutRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/_pathlessLayout/a': typeof PathlessLayoutARoute
   '/_pathlessLayout/b': typeof PathlessLayoutBRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
   '/dashboard/_layout': typeof DashboardLayoutRouteWithChildren
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/display/Display': typeof DisplayDisplayRoute
   '/posts/$id': typeof PostsIdRoute
-  '/(public)/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/(public)/contact-us/$country': typeof publicContactUsCountryRouteWithChildren
+  '/admin/_adminLayout/categories': typeof AdminAdminLayoutCategoriesRouteRouteWithChildren
+  '/admin/_adminLayout/dashboard': typeof AdminAdminLayoutDashboardRouteRoute
+  '/admin/_adminLayout/search': typeof AdminAdminLayoutSearchRouteRoute
+  '/client/_clientLayout/dashboard': typeof ClientClientLayoutDashboardRouteRoute
   '/dashboard/_layout/about': typeof DashboardLayoutAboutRoute
   '/dashboard/_layout/setting': typeof DashboardLayoutSettingRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/posts/{-$category}/{-$slug}': typeof PostsChar123CategoryChar125Char123SlugChar125Route
   '/posts_/$id/edit': typeof PostsIdEditRoute
-  '/(public)/contact-us/': typeof publicContactUsIndexRoute
   '/(public)/app/users/$userId': typeof publicAppUsersUserIdRouteRouteWithChildren
-  '/(public)/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
-  '/(public)/contact-us/$country/$city': typeof publicContactUsCountryCityRoute
-  '/(public)/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/_adminLayout/categories/$categoryId': typeof AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren
+  '/client/_clientLayout/contact-us/$country': typeof ClientClientLayoutContactUsCountryRouteWithChildren
+  '/client/_clientLayout/contact-us/': typeof ClientClientLayoutContactUsIndexRoute
+  '/admin/_adminLayout/app/users/$userId': typeof AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren
+  '/admin/_adminLayout/categories/$categoryId/$subcategoryId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
   '/(public)/app/users/$userId/edit': typeof publicAppUsersUserIdEditRoute
   '/(public)/app/users/$userId/setting': typeof publicAppUsersUserIdSettingRoute
+  '/client/_clientLayout/contact-us/$country/$city': typeof ClientClientLayoutContactUsCountryCityRoute
+  '/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId': typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+  '/admin/_adminLayout/app/users/$userId/edit': typeof AdminAdminLayoutAppUsersUserIdEditRoute
+  '/admin/_adminLayout/app/users/$userId/setting': typeof AdminAdminLayoutAppUsersUserIdSettingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -308,98 +374,116 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/posts'
-    | '/categories'
-    | '/search'
+    | '/admin'
+    | '/client'
     | '/login'
     | '/register'
     | '/a'
     | '/b'
-    | '/admin/dashboard'
     | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/display/Display'
     | '/posts/$id'
-    | '/categories/$categoryId'
-    | '/contact-us/$country'
+    | '/admin/categories'
+    | '/admin/dashboard'
+    | '/admin/search'
+    | '/client/dashboard'
     | '/dashboard/about'
     | '/dashboard/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts/$id/edit'
-    | '/contact-us/'
     | '/app/users/$userId'
-    | '/categories/$categoryId/$subcategoryId'
-    | '/contact-us/$country/$city'
-    | '/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/categories/$categoryId'
+    | '/client/contact-us/$country'
+    | '/client/contact-us/'
+    | '/admin/app/users/$userId'
+    | '/admin/categories/$categoryId/$subcategoryId'
     | '/app/users/$userId/edit'
     | '/app/users/$userId/setting'
+    | '/client/contact-us/$country/$city'
+    | '/admin/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/app/users/$userId/edit'
+    | '/admin/app/users/$userId/setting'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/app'
     | '/posts'
-    | '/categories'
-    | '/search'
+    | '/admin'
+    | '/client'
     | '/login'
     | '/register'
     | '/a'
     | '/b'
-    | '/admin/dashboard'
     | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/display/Display'
     | '/posts/$id'
-    | '/categories/$categoryId'
-    | '/contact-us/$country'
+    | '/admin/categories'
+    | '/admin/dashboard'
+    | '/admin/search'
+    | '/client/dashboard'
     | '/dashboard/about'
     | '/dashboard/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts/$id/edit'
-    | '/contact-us'
     | '/app/users/$userId'
-    | '/categories/$categoryId/$subcategoryId'
-    | '/contact-us/$country/$city'
-    | '/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/categories/$categoryId'
+    | '/client/contact-us/$country'
+    | '/client/contact-us'
+    | '/admin/app/users/$userId'
+    | '/admin/categories/$categoryId/$subcategoryId'
     | '/app/users/$userId/edit'
     | '/app/users/$userId/setting'
+    | '/client/contact-us/$country/$city'
+    | '/admin/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/app/users/$userId/edit'
+    | '/admin/app/users/$userId/setting'
   id:
     | '__root__'
     | '/'
     | '/_pathlessLayout'
     | '/app'
     | '/posts'
-    | '/(public)/categories'
-    | '/(public)/search'
+    | '/admin/_adminLayout'
+    | '/client/_clientLayout'
     | '/(auth)/login'
     | '/(auth)/register'
     | '/_pathlessLayout/a'
     | '/_pathlessLayout/b'
-    | '/admin/dashboard'
     | '/dashboard/_layout'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/display/Display'
     | '/posts/$id'
-    | '/(public)/categories/$categoryId'
-    | '/(public)/contact-us/$country'
+    | '/admin/_adminLayout/categories'
+    | '/admin/_adminLayout/dashboard'
+    | '/admin/_adminLayout/search'
+    | '/client/_clientLayout/dashboard'
     | '/dashboard/_layout/about'
     | '/dashboard/_layout/setting'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/posts/{-$category}/{-$slug}'
     | '/posts_/$id/edit'
-    | '/(public)/contact-us/'
     | '/(public)/app/users/$userId'
-    | '/(public)/categories/$categoryId/$subcategoryId'
-    | '/(public)/contact-us/$country/$city'
-    | '/(public)/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/_adminLayout/categories/$categoryId'
+    | '/client/_clientLayout/contact-us/$country'
+    | '/client/_clientLayout/contact-us/'
+    | '/admin/_adminLayout/app/users/$userId'
+    | '/admin/_adminLayout/categories/$categoryId/$subcategoryId'
     | '/(public)/app/users/$userId/edit'
     | '/(public)/app/users/$userId/setting'
+    | '/client/_clientLayout/contact-us/$country/$city'
+    | '/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId'
+    | '/admin/_adminLayout/app/users/$userId/edit'
+    | '/admin/_adminLayout/app/users/$userId/setting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -407,20 +491,17 @@ export interface RootRouteChildren {
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
   AppRoute: typeof AppRoute
   PostsRoute: typeof PostsRouteWithChildren
-  publicCategoriesRouteRoute: typeof publicCategoriesRouteRouteWithChildren
-  publicSearchRouteRoute: typeof publicSearchRouteRoute
+  AdminAdminLayoutRouteRoute: typeof AdminAdminLayoutRouteRouteWithChildren
+  ClientClientLayoutRouteRoute: typeof ClientClientLayoutRouteRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   DisplayDisplayRoute: typeof DisplayDisplayRoute
-  publicContactUsCountryRoute: typeof publicContactUsCountryRouteWithChildren
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
   PostsIdEditRoute: typeof PostsIdEditRoute
-  publicContactUsIndexRoute: typeof publicContactUsIndexRoute
   publicAppUsersUserIdRouteRoute: typeof publicAppUsersUserIdRouteRouteWithChildren
 }
 
@@ -489,13 +570,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_pathlessLayout/b': {
       id: '/_pathlessLayout/b'
       path: '/b'
@@ -524,25 +598,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(public)/search': {
-      id: '/(public)/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof publicSearchRouteRouteImport
+    '/client/_clientLayout': {
+      id: '/client/_clientLayout'
+      path: '/client'
+      fullPath: '/client'
+      preLoaderRoute: typeof ClientClientLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(public)/categories': {
-      id: '/(public)/categories'
-      path: '/categories'
-      fullPath: '/categories'
-      preLoaderRoute: typeof publicCategoriesRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(public)/contact-us/': {
-      id: '/(public)/contact-us/'
-      path: '/contact-us'
-      fullPath: '/contact-us/'
-      preLoaderRoute: typeof publicContactUsIndexRouteImport
+    '/admin/_adminLayout': {
+      id: '/admin/_adminLayout'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminAdminLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts_/$id/edit': {
@@ -587,33 +654,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutAboutRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
-    '/(public)/contact-us/$country': {
-      id: '/(public)/contact-us/$country'
+    '/client/_clientLayout/dashboard': {
+      id: '/client/_clientLayout/dashboard'
+      path: '/dashboard'
+      fullPath: '/client/dashboard'
+      preLoaderRoute: typeof ClientClientLayoutDashboardRouteRouteImport
+      parentRoute: typeof ClientClientLayoutRouteRoute
+    }
+    '/admin/_adminLayout/search': {
+      id: '/admin/_adminLayout/search'
+      path: '/search'
+      fullPath: '/admin/search'
+      preLoaderRoute: typeof AdminAdminLayoutSearchRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutRouteRoute
+    }
+    '/admin/_adminLayout/dashboard': {
+      id: '/admin/_adminLayout/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminAdminLayoutDashboardRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutRouteRoute
+    }
+    '/admin/_adminLayout/categories': {
+      id: '/admin/_adminLayout/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminAdminLayoutCategoriesRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutRouteRoute
+    }
+    '/client/_clientLayout/contact-us/': {
+      id: '/client/_clientLayout/contact-us/'
+      path: '/contact-us'
+      fullPath: '/client/contact-us/'
+      preLoaderRoute: typeof ClientClientLayoutContactUsIndexRouteImport
+      parentRoute: typeof ClientClientLayoutRouteRoute
+    }
+    '/client/_clientLayout/contact-us/$country': {
+      id: '/client/_clientLayout/contact-us/$country'
       path: '/contact-us/$country'
-      fullPath: '/contact-us/$country'
-      preLoaderRoute: typeof publicContactUsCountryRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/client/contact-us/$country'
+      preLoaderRoute: typeof ClientClientLayoutContactUsCountryRouteImport
+      parentRoute: typeof ClientClientLayoutRouteRoute
     }
-    '/(public)/categories/$categoryId': {
-      id: '/(public)/categories/$categoryId'
+    '/admin/_adminLayout/categories/$categoryId': {
+      id: '/admin/_adminLayout/categories/$categoryId'
       path: '/$categoryId'
-      fullPath: '/categories/$categoryId'
-      preLoaderRoute: typeof publicCategoriesCategoryIdRouteRouteImport
-      parentRoute: typeof publicCategoriesRouteRoute
-    }
-    '/(public)/contact-us/$country/$city': {
-      id: '/(public)/contact-us/$country/$city'
-      path: '/$city'
-      fullPath: '/contact-us/$country/$city'
-      preLoaderRoute: typeof publicContactUsCountryCityRouteImport
-      parentRoute: typeof publicContactUsCountryRoute
-    }
-    '/(public)/categories/$categoryId/$subcategoryId': {
-      id: '/(public)/categories/$categoryId/$subcategoryId'
-      path: '/$subcategoryId'
-      fullPath: '/categories/$categoryId/$subcategoryId'
-      preLoaderRoute: typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteImport
-      parentRoute: typeof publicCategoriesCategoryIdRouteRoute
+      fullPath: '/admin/categories/$categoryId'
+      preLoaderRoute: typeof AdminAdminLayoutCategoriesCategoryIdRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutCategoriesRouteRoute
     }
     '/(public)/app/users/$userId': {
       id: '/(public)/app/users/$userId'
@@ -621,6 +709,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/users/$userId'
       preLoaderRoute: typeof publicAppUsersUserIdRouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/client/_clientLayout/contact-us/$country/$city': {
+      id: '/client/_clientLayout/contact-us/$country/$city'
+      path: '/$city'
+      fullPath: '/client/contact-us/$country/$city'
+      preLoaderRoute: typeof ClientClientLayoutContactUsCountryCityRouteImport
+      parentRoute: typeof ClientClientLayoutContactUsCountryRoute
     }
     '/(public)/app/users/$userId/setting': {
       id: '/(public)/app/users/$userId/setting'
@@ -636,12 +731,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicAppUsersUserIdEditRouteImport
       parentRoute: typeof publicAppUsersUserIdRouteRoute
     }
-    '/(public)/categories/$categoryId/$subcategoryId/$productId': {
-      id: '/(public)/categories/$categoryId/$subcategoryId/$productId'
+    '/admin/_adminLayout/categories/$categoryId/$subcategoryId': {
+      id: '/admin/_adminLayout/categories/$categoryId/$subcategoryId'
+      path: '/$subcategoryId'
+      fullPath: '/admin/categories/$categoryId/$subcategoryId'
+      preLoaderRoute: typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutCategoriesCategoryIdRouteRoute
+    }
+    '/admin/_adminLayout/app/users/$userId': {
+      id: '/admin/_adminLayout/app/users/$userId'
+      path: '/app/users/$userId'
+      fullPath: '/admin/app/users/$userId'
+      preLoaderRoute: typeof AdminAdminLayoutAppUsersUserIdRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutRouteRoute
+    }
+    '/admin/_adminLayout/app/users/$userId/setting': {
+      id: '/admin/_adminLayout/app/users/$userId/setting'
+      path: '/setting'
+      fullPath: '/admin/app/users/$userId/setting'
+      preLoaderRoute: typeof AdminAdminLayoutAppUsersUserIdSettingRouteImport
+      parentRoute: typeof AdminAdminLayoutAppUsersUserIdRouteRoute
+    }
+    '/admin/_adminLayout/app/users/$userId/edit': {
+      id: '/admin/_adminLayout/app/users/$userId/edit'
+      path: '/edit'
+      fullPath: '/admin/app/users/$userId/edit'
+      preLoaderRoute: typeof AdminAdminLayoutAppUsersUserIdEditRouteImport
+      parentRoute: typeof AdminAdminLayoutAppUsersUserIdRouteRoute
+    }
+    '/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId': {
+      id: '/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId'
       path: '/$productId'
-      fullPath: '/categories/$categoryId/$subcategoryId/$productId'
-      preLoaderRoute: typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport
-      parentRoute: typeof publicCategoriesCategoryIdSubcategoryIdRouteRoute
+      fullPath: '/admin/categories/$categoryId/$subcategoryId/$productId'
+      preLoaderRoute: typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport
+      parentRoute: typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute
     }
   }
 }
@@ -673,48 +796,124 @@ const PostsRouteChildren: PostsRouteChildren = {
 
 const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
 
-interface publicCategoriesCategoryIdSubcategoryIdRouteRouteChildren {
-  publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute: typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
+interface AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteChildren {
+  AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute: typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
 }
 
-const publicCategoriesCategoryIdSubcategoryIdRouteRouteChildren: publicCategoriesCategoryIdSubcategoryIdRouteRouteChildren =
+const AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteChildren: AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteChildren =
   {
-    publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute:
-      publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute,
+    AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute:
+      AdminAdminLayoutCategoriesCategoryIdSubcategoryIdProductIdRouteRoute,
   }
 
-const publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren =
-  publicCategoriesCategoryIdSubcategoryIdRouteRoute._addFileChildren(
-    publicCategoriesCategoryIdSubcategoryIdRouteRouteChildren,
+const AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren =
+  AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute._addFileChildren(
+    AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteChildren,
   )
 
-interface publicCategoriesCategoryIdRouteRouteChildren {
-  publicCategoriesCategoryIdSubcategoryIdRouteRoute: typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
+interface AdminAdminLayoutCategoriesCategoryIdRouteRouteChildren {
+  AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute: typeof AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
 }
 
-const publicCategoriesCategoryIdRouteRouteChildren: publicCategoriesCategoryIdRouteRouteChildren =
+const AdminAdminLayoutCategoriesCategoryIdRouteRouteChildren: AdminAdminLayoutCategoriesCategoryIdRouteRouteChildren =
   {
-    publicCategoriesCategoryIdSubcategoryIdRouteRoute:
-      publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren,
+    AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRoute:
+      AdminAdminLayoutCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren,
   }
 
-const publicCategoriesCategoryIdRouteRouteWithChildren =
-  publicCategoriesCategoryIdRouteRoute._addFileChildren(
-    publicCategoriesCategoryIdRouteRouteChildren,
+const AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren =
+  AdminAdminLayoutCategoriesCategoryIdRouteRoute._addFileChildren(
+    AdminAdminLayoutCategoriesCategoryIdRouteRouteChildren,
   )
 
-interface publicCategoriesRouteRouteChildren {
-  publicCategoriesCategoryIdRouteRoute: typeof publicCategoriesCategoryIdRouteRouteWithChildren
+interface AdminAdminLayoutCategoriesRouteRouteChildren {
+  AdminAdminLayoutCategoriesCategoryIdRouteRoute: typeof AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren
 }
 
-const publicCategoriesRouteRouteChildren: publicCategoriesRouteRouteChildren = {
-  publicCategoriesCategoryIdRouteRoute:
-    publicCategoriesCategoryIdRouteRouteWithChildren,
+const AdminAdminLayoutCategoriesRouteRouteChildren: AdminAdminLayoutCategoriesRouteRouteChildren =
+  {
+    AdminAdminLayoutCategoriesCategoryIdRouteRoute:
+      AdminAdminLayoutCategoriesCategoryIdRouteRouteWithChildren,
+  }
+
+const AdminAdminLayoutCategoriesRouteRouteWithChildren =
+  AdminAdminLayoutCategoriesRouteRoute._addFileChildren(
+    AdminAdminLayoutCategoriesRouteRouteChildren,
+  )
+
+interface AdminAdminLayoutAppUsersUserIdRouteRouteChildren {
+  AdminAdminLayoutAppUsersUserIdEditRoute: typeof AdminAdminLayoutAppUsersUserIdEditRoute
+  AdminAdminLayoutAppUsersUserIdSettingRoute: typeof AdminAdminLayoutAppUsersUserIdSettingRoute
 }
 
-const publicCategoriesRouteRouteWithChildren =
-  publicCategoriesRouteRoute._addFileChildren(
-    publicCategoriesRouteRouteChildren,
+const AdminAdminLayoutAppUsersUserIdRouteRouteChildren: AdminAdminLayoutAppUsersUserIdRouteRouteChildren =
+  {
+    AdminAdminLayoutAppUsersUserIdEditRoute:
+      AdminAdminLayoutAppUsersUserIdEditRoute,
+    AdminAdminLayoutAppUsersUserIdSettingRoute:
+      AdminAdminLayoutAppUsersUserIdSettingRoute,
+  }
+
+const AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren =
+  AdminAdminLayoutAppUsersUserIdRouteRoute._addFileChildren(
+    AdminAdminLayoutAppUsersUserIdRouteRouteChildren,
+  )
+
+interface AdminAdminLayoutRouteRouteChildren {
+  AdminAdminLayoutCategoriesRouteRoute: typeof AdminAdminLayoutCategoriesRouteRouteWithChildren
+  AdminAdminLayoutDashboardRouteRoute: typeof AdminAdminLayoutDashboardRouteRoute
+  AdminAdminLayoutSearchRouteRoute: typeof AdminAdminLayoutSearchRouteRoute
+  AdminAdminLayoutAppUsersUserIdRouteRoute: typeof AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren
+}
+
+const AdminAdminLayoutRouteRouteChildren: AdminAdminLayoutRouteRouteChildren = {
+  AdminAdminLayoutCategoriesRouteRoute:
+    AdminAdminLayoutCategoriesRouteRouteWithChildren,
+  AdminAdminLayoutDashboardRouteRoute: AdminAdminLayoutDashboardRouteRoute,
+  AdminAdminLayoutSearchRouteRoute: AdminAdminLayoutSearchRouteRoute,
+  AdminAdminLayoutAppUsersUserIdRouteRoute:
+    AdminAdminLayoutAppUsersUserIdRouteRouteWithChildren,
+}
+
+const AdminAdminLayoutRouteRouteWithChildren =
+  AdminAdminLayoutRouteRoute._addFileChildren(
+    AdminAdminLayoutRouteRouteChildren,
+  )
+
+interface ClientClientLayoutContactUsCountryRouteChildren {
+  ClientClientLayoutContactUsCountryCityRoute: typeof ClientClientLayoutContactUsCountryCityRoute
+}
+
+const ClientClientLayoutContactUsCountryRouteChildren: ClientClientLayoutContactUsCountryRouteChildren =
+  {
+    ClientClientLayoutContactUsCountryCityRoute:
+      ClientClientLayoutContactUsCountryCityRoute,
+  }
+
+const ClientClientLayoutContactUsCountryRouteWithChildren =
+  ClientClientLayoutContactUsCountryRoute._addFileChildren(
+    ClientClientLayoutContactUsCountryRouteChildren,
+  )
+
+interface ClientClientLayoutRouteRouteChildren {
+  ClientClientLayoutDashboardRouteRoute: typeof ClientClientLayoutDashboardRouteRoute
+  ClientClientLayoutContactUsCountryRoute: typeof ClientClientLayoutContactUsCountryRouteWithChildren
+  ClientClientLayoutContactUsIndexRoute: typeof ClientClientLayoutContactUsIndexRoute
+}
+
+const ClientClientLayoutRouteRouteChildren: ClientClientLayoutRouteRouteChildren =
+  {
+    ClientClientLayoutDashboardRouteRoute:
+      ClientClientLayoutDashboardRouteRoute,
+    ClientClientLayoutContactUsCountryRoute:
+      ClientClientLayoutContactUsCountryRouteWithChildren,
+    ClientClientLayoutContactUsIndexRoute:
+      ClientClientLayoutContactUsIndexRoute,
+  }
+
+const ClientClientLayoutRouteRouteWithChildren =
+  ClientClientLayoutRouteRoute._addFileChildren(
+    ClientClientLayoutRouteRouteChildren,
   )
 
 interface DashboardLayoutRouteChildren {
@@ -730,20 +929,6 @@ const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
 const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
   DashboardLayoutRouteChildren,
 )
-
-interface publicContactUsCountryRouteChildren {
-  publicContactUsCountryCityRoute: typeof publicContactUsCountryCityRoute
-}
-
-const publicContactUsCountryRouteChildren: publicContactUsCountryRouteChildren =
-  {
-    publicContactUsCountryCityRoute: publicContactUsCountryCityRoute,
-  }
-
-const publicContactUsCountryRouteWithChildren =
-  publicContactUsCountryRoute._addFileChildren(
-    publicContactUsCountryRouteChildren,
-  )
 
 interface publicAppUsersUserIdRouteRouteChildren {
   publicAppUsersUserIdEditRoute: typeof publicAppUsersUserIdEditRoute
@@ -766,20 +951,17 @@ const rootRouteChildren: RootRouteChildren = {
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
   AppRoute: AppRoute,
   PostsRoute: PostsRouteWithChildren,
-  publicCategoriesRouteRoute: publicCategoriesRouteRouteWithChildren,
-  publicSearchRouteRoute: publicSearchRouteRoute,
+  AdminAdminLayoutRouteRoute: AdminAdminLayoutRouteRouteWithChildren,
+  ClientClientLayoutRouteRoute: ClientClientLayoutRouteRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   DisplayDisplayRoute: DisplayDisplayRoute,
-  publicContactUsCountryRoute: publicContactUsCountryRouteWithChildren,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
   PostsIdEditRoute: PostsIdEditRoute,
-  publicContactUsIndexRoute: publicContactUsIndexRoute,
   publicAppUsersUserIdRouteRoute: publicAppUsersUserIdRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport

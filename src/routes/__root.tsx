@@ -1,4 +1,8 @@
-import { Link, Outlet, createRootRouteWithContext} from '@tanstack/react-router'
+import {
+  Link,
+  Outlet,
+  createRootRouteWithContext,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
@@ -8,25 +12,30 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import type { QueryClient } from '@tanstack/react-query'
 
 export type UserRole = 'admin' | 'client' | null
+
 export type RouterContext = {
   role: UserRole
-  login: (newRole:"admin"|"client") => void
+  login: (newRole: 'admin' | 'client') => void
   logout: () => void
   isAdmin: boolean
   isClient: boolean
   isAuthenticated: boolean
-  queryClient:QueryClient
+  queryClient: QueryClient
 }
+
 export const Route = createRootRouteWithContext<RouterContext>()({
- 
-  component: () => (
+  component: RootLayout,
+  notFoundComponent: () => <div>404 not Found</div>,
+})
+
+function RootLayout() {
+  const { isAuthenticated } = Route.useRouteContext()
+  return (
     <>
       <Header />
-      <div className='container mx-auto max-w-xl mb-2'>
-        <div className='space-x-2'>
-          <Link to="/categories">Categories</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/contact-us">Contact Us</Link>
+      <div className="container mx-auto max-w-xl mb-2">
+        <div className="space-x-2">
+          {isAuthenticated ? '' : <Link to="/login">Login</Link>}
         </div>
       </div>
       <Outlet />
@@ -43,6 +52,5 @@ export const Route = createRootRouteWithContext<RouterContext>()({
         ]}
       />
     </>
-  ),
-  notFoundComponent: () => <div>404 not Found</div>,
-})
+  )
+}

@@ -13,23 +13,22 @@ import { useRouterContextState } from './lib/use-router-context-state.tsx'
 
 // Create a new router instance
 const TanStackQueryProviderContext = TanStackQueryProvider.getContext()
-const routerContextState = useRouterContextState(TanStackQueryProviderContext.queryClient)
 
-const router = createRouter({
-  routeTree,
-  context: routerContextState,
-  defaultPreload: 'intent',
-  scrollRestoration: true,
-  defaultStructuralSharing: true,
-  defaultPreloadStaleTime: 0,
-  defaultPendingMs: 0,
-})
+// Move the router creation and context state inside a component
+function App() {
+  const routerContextState = useRouterContextState(TanStackQueryProviderContext.queryClient)
 
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
+  const router = createRouter({
+    routeTree,
+    context: routerContextState,
+    defaultPreload: 'intent',
+    scrollRestoration: true,
+    defaultStructuralSharing: true,
+    defaultPreloadStaleTime: 0,
+    defaultPendingMs: 0,
+  })
+
+  return <RouterProvider router={router} />
 }
 
 // Render the app
@@ -39,13 +38,11 @@ if (rootElement && !rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <TanStackQueryProvider.Provider {...TanStackQueryProviderContext}>
-        <RouterProvider router={router} />
+        <App />
       </TanStackQueryProvider.Provider>
     </StrictMode>,
   )
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals()
 reportWebVitals()

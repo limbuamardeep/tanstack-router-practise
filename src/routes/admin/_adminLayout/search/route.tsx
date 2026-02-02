@@ -30,7 +30,7 @@ function RouteComponent() {
         {products.map((product:Product) => (
           <Link
             className="card"
-            to="/admin/_adminLayout/categories/$categoryId/$subcategoryId/$productId"
+            to="/admin/categories/$categoryId/$subcategoryId/$productId"
             params={{
               productId: product.id,
               categoryId: product.categoryId,

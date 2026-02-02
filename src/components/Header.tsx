@@ -1,10 +1,19 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useRouterState } from '@tanstack/react-router'
 
 import { useState } from 'react'
-import { ClipboardType, Home, Menu, Network, Table, X } from 'lucide-react'
+import {
+  ClipboardType,
+  Home,
+  LogOut,
+  Menu,
+  Network,
+  Table,
+  X,
+} from 'lucide-react'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { isAuthenticated, role, logout } = useRouteContext()
 
   return (
     <>
@@ -113,6 +122,32 @@ export default function Header() {
 
           {/* Demo Links End */}
         </nav>
+        <div className="flex items-center gap-4">
+          {isAuthenticated ? (
+            <>
+              <span className="text-sm">
+                Role: <span className="font-bold capitalize">{role}</span>
+              </span>
+              <button
+                onClick={logout}
+                className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
+              >
+                <LogOut size={18} />
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
+              >
+                <LogIn size={18} />
+                Login
+              </Link>
+            </>
+          )}
+        </div>
       </aside>
     </>
   )
